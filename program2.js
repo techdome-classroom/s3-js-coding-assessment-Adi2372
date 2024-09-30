@@ -3,7 +3,7 @@
  * @return {number}
  */
 var romanToInt = function (s) {
-    const romanNumerals = {
+    const d = {
         I: 1,
         V: 5,
         X: 10,
@@ -12,21 +12,12 @@ var romanToInt = function (s) {
         D: 500,
         M: 1000,
     };
-
-    let total = 0;
-
-    for (let i = 0; i < s.length; i++) {
-        const current = romanNumerals[s[i]];
-        const next = romanNumerals[s[i + 1]];
-
-        if (next && current < next) {
-            total -= current;
-        } else {
-            total += current;
-        }
+    let ans = d[s[s.length - 1]]; // Start with the value of the last Roman numeral
+    for (let i = 0; i < s.length - 1; ++i) {
+        const sign = d[s[i]] < d[s[i + 1]] ? -1 : 1; // Determine if we should add or subtract
+        ans += sign * d[s[i]];
     }
-
-    return total;
+    return ans;
 };
 
 module.exports = { romanToInt };
