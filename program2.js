@@ -4,7 +4,8 @@
  */
 var romanToInt = function (s) {
     // III = 3 // LVIII = 58 // MCMXCIV = 1994
-    const romanNumerals = {
+    const romanToInt = function (s) {
+    const d = {
         I: 1,
         V: 5,
         X: 10,
@@ -13,21 +14,11 @@ var romanToInt = function (s) {
         D: 500,
         M: 1000,
     };
-
-    let total = 0;
-
-    for (let i = 0; i < s.length; i++) {
-        const current = romanNumerals[s[i]]; // 1
-        const next = romanNumerals[s[i + 1]]; // 5
-
-        if (current < next) {
-            // 1 < 5
-            total -= current; // 0 - 1 = -1
-        } else {
-            total += current; // 0 + 1 = 1
-        }
+    let ans = d[s[s.length - 1]];
+    for (let i = 0; i < s.length - 1; ++i) {
+        const sign = d[s[i]] < d[s[i + 1]] ? -1 : 1;
+        ans += sign * d[s[i]];
     }
-
-    return total; // 4
+    return ans;
 };
 module.exports={romanToInt}
