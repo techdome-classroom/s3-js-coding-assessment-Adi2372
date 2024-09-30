@@ -12,9 +12,9 @@ var romanToInt = function (s) {
         D: 500,
         M: 1000,
     };
-    let ans = d[s[s.length - 1]]; // Start with the value of the last Roman numeral
+    let ans = d[s[s.length - 1]]; 
     for (let i = 0; i < s.length - 1; ++i) {
-        const sign = d[s[i]] < d[s[i + 1]] ? -1 : 1; // Determine if we should add or subtract
+        const sign = d[s[i]] < d[s[i + 1]] ? -1 : 1; 
         ans += sign * d[s[i]];
     }
     return ans;
