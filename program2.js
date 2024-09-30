@@ -2,40 +2,32 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
-    const romanValues = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000
+var romanToInt = function (s) {
+    // III = 3 // LVIII = 58 // MCMXCIV = 1994
+    const romanNumerals = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000,
     };
 
     let total = 0;
-    let prevValue = 0;
 
-    for (let i = s.length - 1; i >= 0; i--) {
-        const currentValue = romanValues[s[i]];
+    for (let i = 0; i < s.length; i++) {
+        const current = romanNumerals[s[i]]; // 1
+        const next = romanNumerals[s[i + 1]]; // 5
 
-        // If the current value is less than the previous value, subtract it
-        if (currentValue < prevValue) {
-            total -= currentValue;
+        if (current < next) {
+            // 1 < 5
+            total -= current; // 0 - 1 = -1
         } else {
-            // Otherwise, add it
-            total += currentValue;
+            total += current; // 0 + 1 = 1
         }
-
-        // Update the previous value for the next iteration
-        prevValue = currentValue;
     }
 
-    return total;
-}
-
-// Example usage:
-console.log(romanToInt("XXVII")); // Output: 27
-console.log(romanToInt("IV"));    // Output: 4
-console.log(romanToInt("MCMXCIV")); // Output: 1994
+    return total; // 4
+};
 module.exports={romanToInt}
