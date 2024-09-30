@@ -3,8 +3,8 @@
  * @return {number}
  */
 var romanToInt = function (s) {
-    const d = {
-        I: 1, 
+    const romanNumerals = {
+        I: 1,
         V: 5,
         X: 10,
         L: 50,
@@ -12,12 +12,21 @@ var romanToInt = function (s) {
         D: 500,
         M: 1000,
     };
-    let ans = d[s[s.length - 1]];
-    for (let i = 0; i < s.length - 1; ++i) {
-        const sign = d[s[i]] < d[s[i + 1]] ? -1 : 1;
-        ans += sign * d[s[i]];
+
+    let total = 0;
+
+    for (let i = 0; i < s.length; i++) {
+        const current = romanNumerals[s[i]];
+        const next = romanNumerals[s[i + 1]];
+
+        if (next && current < next) {
+            total -= current;
+        } else {
+            total += current;
+        }
     }
-    return ans;
+
+    return total;
 };
 
 module.exports = { romanToInt };
