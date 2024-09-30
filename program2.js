@@ -3,10 +3,8 @@
  * @return {number}
  */
 var romanToInt = function (s) {
-    // III = 3 // LVIII = 58 // MCMXCIV = 1994
-    const romanToInt = function (s) {
     const d = {
-        I: 1,
+        I: 1, 
         V: 5,
         X: 10,
         L: 50,
@@ -21,4 +19,5 @@ var romanToInt = function (s) {
     }
     return ans;
 };
-module.exports={romanToInt}
+
+module.exports = { romanToInt };
